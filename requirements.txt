@@ -1,0 +1,12 @@
+pycocotools
+tqdm
+cython
+scipy
+motmetrics
+opencv-python
+seaborn
+lap
+numpy==1.19.0
+dash
+dash_core_components
+dash_html_components
