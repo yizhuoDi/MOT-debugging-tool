@@ -47,9 +47,9 @@ There will be a webpage shown, which is built by dash,a repo for data visualizat
 The video generated is in ./video_res
 
 ## Dash web
-Video_Jump: Jump to the video selected from the list\
-Index_Jump: Jump to a certain frame of input\
-Previous: Jump to the previous frame\
-Next: Jump to the next frame\
-Bug_Previous: Jump to the previous frame of Id-Switch\
-Bug_Next: Jump to the next frame of Id-Switch\
+`Video_Jump`: Jump to the video selected from the list\
+`Index_Jump`: Jump to a certain frame of input\
+`Previous`: Jump to the previous frame\
+`Next`: Jump to the next frame\
+`Bug_Previous`: Jump to the previous frame of Id-Switch\
+`Bug_Next`: Jump to the next frame of Id-Switch\
