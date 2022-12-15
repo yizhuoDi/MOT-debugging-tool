@@ -499,9 +499,8 @@ if __name__ == '__main__':
     detr.eval()
     detr = detr.cuda()
 
-    # '''for MOT17 submit''' 
-    sub_dir = 'MOT17/images'
-    
+    # MOT_tool_start
+    sub_dir = 'MOT17/images' 
     seq_nums =  ['MOT17-02-SDP',
                 'MOT17-04-SDP',
                 'MOT17-05-SDP',
@@ -509,60 +508,31 @@ if __name__ == '__main__':
                 'MOT17-10-SDP',
                 'MOT17-11-SDP',
                 'MOT17-13-SDP']
-    """
-    seq_nums =  ['MOT17-02-SDP']
-    """
+
     accs = []
     seqs = []
 
     i=0
     save_ids_path='./result'
     for seq_num in seq_nums:
+        #evaluate the model, save the events in acc[]
         det = Detector(args, model=detr, seq_num=seq_num)
         det.detect()
         accs.append(det.eval_seq())
         seqs.append(seq_num)
-        ids_path=os.path.join(save_ids_path,f'{seq_num}_ids.csv')
-        #print(accs[i].events[accs[i].events['Type']=='RAW'])
-        #events_ids=np.empty(1)
-        #add_Neighbor=np.empty(1)
+
+        #search the events of 'SWITCH' and 'MATCH'
         mot_ids=accs[i].mot_events[accs[i].mot_events['Type']=='SWITCH']
         mot_match=accs[i].mot_events[accs[i].mot_events['Type']=='MATCH']
-        
         mot_ids=mot_ids.append(mot_match)
-        #print(mot_ids)
         mot_ids=mot_ids.sort_values(by='FrameId')
         
-        events = accs[i].mot_events.copy(deep=True)
-        add_Neighbor= pd.DataFrame(columns=('FrameId','Event','Type','OId','HId','D'))
-
-        #events.to_csv(os.path.join(save_ids_path,f'{seq_num}_event.csv'))
-        """
-        if mot_ids.empty == False:
-            
-        
-            for j in range(1,mot_ids.shape[0]+1) :
-                frameid = mot_ids['FrameId'][j]
-                oid = mot_ids.loc[j-1,3]
-                if frameid>0:
-                    events2=events[events['FrameId']==frameid-1].copy(deep=False)
-                    add_Neighbor=add_Neighbor.append(events2[events2['OId']==oid])
-                events2=events[events['FrameId']==frameid].copy(deep=False)
-                add_Neighbor=add_Neighbor.append(events2[events2['OId']==oid])
-                events2=events[events['FrameId']==frameid+1].copy(deep=False)
-                add_Neighbor=add_Neighbor.append(events2[events2['OId']==oid])
-                #add_Neighbor=add_Neighbor.append(events.loc[j-1,:])
-                #add_Neighbor=add_Neighbor.append(events.loc[j,:])
-            print("neighbor",add_Neighbor,"\n")
-            print("events",events,"\n")
-        """
-        
-        
+        #save result data
+        ids_path=os.path.join(save_ids_path,f'{seq_num}_ids.csv')
         mot_ids.to_csv(ids_path)
         i=i+1
 
-    #print(accs[1][3].events)
-    #accs[1].events.to_csv('/home/ubuntu/exp/MOTR-main/result/acc.csv')
+    # MOT_tool_end
     metrics = mm.metrics.motchallenge_metrics
     mh = mm.metrics.create()
     summary = Evaluator.get_summary(accs, seqs, metrics)
@@ -574,41 +544,3 @@ if __name__ == '__main__':
     print(strsummary)
     with open("eval_log.txt", 'a') as f:
         print(strsummary, file=f)
-    
-
-    """copy reuslts for same sequences"""
-    """
-    repeated_seq_nums = ['MOT17-01-DPM']
-    
-                        'MOT17-03-DPM',
-                        'MOT17-06-DPM',
-                        'MOT17-07-DPM',
-                        'MOT17-08-DPM',
-                        'MOT17-12-DPM',
-                        'MOT17-14-DPM',
-    
-                        'MOT17-01-FRCNN',
-                        'MOT17-03-FRCNN',
-                        'MOT17-06-FRCNN',
-                        'MOT17-07-FRCNN',
-                        'MOT17-08-FRCNN',
-                        'MOT17-12-FRCNN',
-                        'MOT17-14-FRCNN']
-    
-    print('copy reuslts for same sequences: ')
-    predict_path = os.path.join(args.output_dir, args.exp_name)
-    for repeated_seq_nums_i in repeated_seq_nums:
-        u, v = repeated_seq_nums_i.split('-')[:-1]
-        shutil.copyfile(os.path.join(predict_path, '{}-{}-SDP.txt'.format(u,v)),os.path.join(predict_path,f'{repeated_seq_nums_i}.txt'))
-
-    sub_dir = 'MOT17/images/train'
-    seq_nums = os.listdir('/home/ubuntu/exp/MOTR-main/MOT17/images/train')
-    #seq_nums = os.listdir('/data/Dataset/mot/MOT17/images/train')
-    
-    
-    for seq_num in seq_nums:
-        shutil.copyfile(os.path.join(args.mot_path, sub_dir, f'{seq_num}/gt/gt.txt'),os.path.join(predict_path,f'{seq_num}.txt'))
-    
-    """
-    
-    
