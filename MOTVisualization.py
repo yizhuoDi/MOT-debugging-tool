@@ -85,20 +85,20 @@ class MOTVisualizer(Visualizer):
 		return im
 
 if __name__ == "__main__":
-	seq_nums =  ['MOT17-02-SDP',
-            'MOT17-04-SDP',
-            'MOT17-05-SDP',
-            'MOT17-09-SDP',
-            'MOT17-10-SDP',
-            'MOT17-11-SDP',
-            'MOT17-13-SDP']
+	seq_nums =  ['video_0',
+            'video_1',
+            'video_2',
+            'video_3',
+            'video_4',
+            'video_5',
+            'video_6',
+		'video_0']
 
 	for seq_num in seq_nums:
-		filepath="./res"
-		filepath=os.path.join(filepath,f'{seq_num}_ids.txt')
-		image="./data/MOT17/images/"
+		filepath="./data/vis_2/pred_txt"
+		filepath=os.path.join(filepath,f'{seq_num}.txt')
+		image="./data/vis_2"
 		image=os.path.join(image,seq_num)
-		image=os.path.join(image,"img1")
 		print(filepath)
 		#ids=pd.read_csv(filepath,sep=',',header=None)
 		MODE=None
@@ -109,9 +109,7 @@ if __name__ == "__main__":
 		
 		visualizer = MOTVisualizer(
 			seqName = seq_num,
-		#FilePath ="data/MOT16/train/MOT16-02/gt/gt.txt",
 			FilePath =filepath,
-		#image_dir = "data/MOT16/train/MOT16-02/img1",
 			image_dir = image,
 			mode = MODE,
 			output_dir  = "./video_res")
