@@ -92,20 +92,18 @@ if __name__ == "__main__":
             'video_4',
             'video_5',
             'video_6',
-		'video_0']
+		'video_7']
 
 	for seq_num in seq_nums:
 		filepath="./data/vis_2/pred_txt"
 		filepath=os.path.join(filepath,f'{seq_num}.txt')
 		image="./data/vis_2"
 		image=os.path.join(image,seq_num)
-		print(filepath)
-		#ids=pd.read_csv(filepath,sep=',',header=None)
+		image=os.path.join(image,'img1')
+
 		MODE=None
 		if os.path.getsize(filepath)==0 :
 			MODE='raw'
-
-
 		
 		visualizer = MOTVisualizer(
 			seqName = seq_num,
