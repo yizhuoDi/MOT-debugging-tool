@@ -22,11 +22,8 @@ import pandas
 
 FileName_ids_path="./result/"
 
-#print(ids_res)
-
 FileName_path = ("./pre_models/pub_submit_15")
 
-#print(data2)
 FileName_gt_path = ("./data/MOT17/images/")
 
 """
@@ -36,14 +33,14 @@ print(data_merge['frame'].iloc[144])
 print(data_merge.iloc[6,0])
 #print(fra[6])
 """
-
-seq_nums =  ['MOT17-02-SDP',
-            'MOT17-04-SDP',
-            'MOT17-05-SDP',
-            'MOT17-09-SDP',
-            'MOT17-10-SDP',
-            'MOT17-11-SDP',
-            'MOT17-13-SDP']
+seq_nums =  ['video_0',
+            'video_1',
+            'video_2',
+            'video_3',
+            'video_4',
+            'video_5',
+            'video_6',
+	'video_7']
 
 for seq_num in seq_nums:
     FileName_ids=os.path.join(FileName_ids_path,f'{seq_num}_ids.csv')
