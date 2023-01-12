@@ -31,23 +31,16 @@ figure_index = 1
 
 # Prepare image data
 FileName_ids_path="./res/"
-#IMG_FOLDER = '/home/ubuntu/MOT15/train/KITTI-13/img1'
-IMG_FOLDER ='./img_res/MOT17-02-SDP'
+IMG_FOLDER ='./data/vis_2/video_0'
 filelist = sorted(glob.glob(osp.join(IMG_FOLDER, '*.jpg')))
 # print(filelist)
 IMG_NUM = len(filelist)
 BUG_NUM = len(filelist)
 example_img = io.imread(filelist[0])
-# (480,640)
+
 IMG_WIDTH, IMG_HEIGHT = example_img.shape[:2]
 jump_index_value = 0
 IMG_FOLDER ='./img_res'
-
-# Prepare point trajectory data
-# point_traj_list:
-# point on time0:[(x0, y0, point_id0),(x1, y1, point_id1)...]
-# point on time1:[(x0', y0', point_id0),(x1', y1', point_id1)...]
-
 
 def debug_print(*args):
     if DEBUG:
