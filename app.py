@@ -31,7 +31,7 @@ figure_index = 1
 
 # Prepare image data
 FileName_ids_path="./res/"
-IMG_FOLDER ='./data/vis_2/video_0'
+IMG_FOLDER ='./data/vis_2/video_0/img1'
 filelist = sorted(glob.glob(osp.join(IMG_FOLDER, '*.jpg')))
 # print(filelist)
 IMG_NUM = len(filelist)
@@ -50,7 +50,7 @@ def create_fig():
     return px.imshow(io.imread(filelist[GLOBAL_IDX]), binary_backend="jpg")
 
 
-	seq_nums =  ['video_0',
+video_nums =  ['video_0',
             'video_1',
             'video_2',
             'video_3',
