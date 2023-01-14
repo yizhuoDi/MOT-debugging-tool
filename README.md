@@ -21,21 +21,29 @@ pip install -r requirements.txt
 ```
 cd ./MOT_tool
 ```
-Download the data from [MOT17](https://motchallenge.net/) and organize them as follows
+Organize the data as follows
 ```
 .
 ├── data
-│   │── MOT17
-│   │    ├── images
-│   │    │   ├── MOT17-02-SDP
-│   │    │   ├── MOT17-04-SDP
-│   │    │   ├── MOT17-05-SDP
-│   │    │   ├── MOT17-09-SDP
-│   │    │   ├── MOT17-10-SDP
-│   │    │   ├── MOT17-11-SDP
-│   │    │   ├── MOT17-13-SDP
+│   │── vis_2
+│   │    ├── pred_txt
+│   │    │    ├── video_0.txt
+│   │    │    ├── video_1.txt
+│   │    ├── video_0
+│   │    │    ├── gt
+│   │    │    │    ├── gt.txt
+│   │    │    ├── img1
+│   │    │    │    ├── 000000.jpg
+│   │    │    │    ├── 000001.jpg
+│   │    ├── video_1
+│   │    ├── video_2
+│   │    ├── video_3
+│   │    ├── video_4
+│   │    ├── video_5
+│   │    ├── video_6
+│   │    ├── video_7
 ```
-Save your pre-trained model in `MOTtool/pre_models`, and name it `pre_model.pth`
+
 
 ## Evaluation and Visualization
 Run the following command:
