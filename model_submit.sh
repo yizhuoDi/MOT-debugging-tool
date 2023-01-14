@@ -5,6 +5,8 @@
 # Copyright (c) 2020 SenseTime. All Rights Reserved.
 # ------------------------------------------------------------------------
 
+
+"""
 EXP_DIR=./pre_models
 python3 submit.py \
     --meta_arch motr \
@@ -32,8 +34,8 @@ python3 submit.py \
     --data_txt_path_val ./datasets/data_path/mot17.train \
     --resume ${EXP_DIR}/pre_model.pth \
     --exp_name pub_submit_15
+"""
+python3 acc_compute.py
 python3 filemerge.py
-
 python3 MOTVisualization.py
-
 python3 app.py
